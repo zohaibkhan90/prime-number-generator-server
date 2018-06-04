@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Test;
 import org.prime.dao.ExecutionDao;
@@ -21,13 +22,15 @@ import org.junit.Before;
 
 public class TestExecutionDao {
 	
+	final static Logger logger = Logger.getLogger(TestExecutionDao.class);
+	
 	private EmbeddedDatabase db;
 
     ExecutionDao executionDao;
     
     @Before
 	public void setUp() throws Exception {
-    	System.out.println("Starting test");
+    	logger.info( "Starting test");
     	try{
     		db = new EmbeddedDatabaseBuilder()
     				.setType(EmbeddedDatabaseType.HSQL)
@@ -35,14 +38,14 @@ public class TestExecutionDao {
     				.addScript("insert.sql")
     				.build();    		
     	} catch(Exception ex){
-    		ex.printStackTrace();
+    		logger.error("Problem occured while Initializing database!", ex);
     	}
 	}
 
 	@Test
 	public void testSave() {
 		try{
-    		System.out.println("Saving record");
+    		logger.info("Saving record");
         	NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(db);
         	ExecutionDaoImpl executionDao = new ExecutionDaoImpl();
         	executionDao.setNamedParameterJdbcTemplate(template);
@@ -54,23 +57,23 @@ public class TestExecutionDao {
         	execution.setTimeElapsed("3 secs");
         	execution.setAlgorithm("simple");
         	execution.setPrimes(3);
-        	System.out.println("Calling execution dao");
-        	System.out.println(new Gson().toJson(execution));
+        	logger.info("Calling execution dao");
+        	logger.info(new Gson().toJson(execution));
         	boolean result = executionDao.save(execution);
-        	System.out.println("Saved: "+result);
+        	logger.info("Saved: "+result);
         	List<Execution> executionsList = executionDao.findExecutionsByName("Khan");
         	Assert.assertNotNull(executionsList);
         	Assert.assertEquals(true, executionsList.size()>0);
         	Assert.assertEquals("Khan", executionsList.get(0).getUserName());
     	}catch (Exception ex){
-    		ex.printStackTrace();
+    		logger.error("Problem occured while saving record!", ex);
     	}
 	}
 	
 	@Test
 	public void testFindRecordsByName() {
 		try{
-    		System.out.println("Saving record");
+    		logger.info("Finding records");
         	NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(db);
         	ExecutionDaoImpl executionDao = new ExecutionDaoImpl();
         	executionDao.setNamedParameterJdbcTemplate(template);
@@ -82,14 +85,14 @@ public class TestExecutionDao {
         	execution.setTimeElapsed("33 secs");
         	execution.setAlgorithm("advance");
         	execution.setPrimes(3);
-        	System.out.println("Calling execution dao");
-        	System.out.println(new Gson().toJson(execution));
+        	logger.info("Calling execution dao");
+        	logger.info(new Gson().toJson(execution));
         	boolean result = executionDao.save(execution);
-        	System.out.println("Saved: "+result);
+        	logger.info("Saved: "+result);
         	List<Execution> executionAfter = executionDao.findExecutionsByName("zohaib");
-        	System.out.println("List for zohaib: "+new Gson().toJson(executionAfter));
+        	logger.info("List for zohaib: "+new Gson().toJson(executionAfter));
     	}catch (Exception ex){
-    		ex.printStackTrace();
+    		logger.error("Problem occured while finding record!", ex);
     	}
 	}
 	
