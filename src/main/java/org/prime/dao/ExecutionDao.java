@@ -3,9 +3,10 @@ package org.prime.dao;
 import java.util.List;
 
 import org.prime.data.Execution;
+import org.springframework.stereotype.Repository;
 
 
-
+@Repository
 public interface ExecutionDao {
 
 	
