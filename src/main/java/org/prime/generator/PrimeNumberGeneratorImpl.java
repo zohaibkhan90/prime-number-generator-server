@@ -64,7 +64,7 @@ public class PrimeNumberGeneratorImpl implements PrimeNumberGenerator {
             boolean isPrimeNumber = true;
             int primeDivisor = 2;
             // check to see if the number is prime
-            while(primeDivisor * primeDivisor <= prime){
+            while(primeDivisor * primeDivisor <= prime){ //if divisor's square reaches or exceeds the number and we still didn't find a divisor, that means it is a prime number
             	if (prime % primeDivisor == 0) {
                     isPrimeNumber = false;
                     break; // exit the inner for loop
