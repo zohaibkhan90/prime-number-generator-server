@@ -7,8 +7,21 @@ import java.sql.Timestamp;
  *
  */
 public class Execution {
-
-private String userName;
+	
+	public Execution(){
+		
+	}
+	
+	public Execution(String userName, Timestamp timestamp, Integer lowerRange, Integer upperRange, String timeElapsed, String algorithm, Integer primes){
+		this.userName = userName;
+		this.timestamp = timestamp;
+		this.lowerRange = lowerRange;
+		this.upperRange = upperRange;
+		this.timeElapsed = timeElapsed;
+		this.algorithm = algorithm;
+		this.primes = primes;
+	}
+	private String userName;
 	
 	private Timestamp timestamp;
 	

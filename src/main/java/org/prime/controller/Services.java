@@ -43,12 +43,12 @@ public class Services {
 				response.setMessage("Please choose an algorithm from one of the followings: Simple");
 				return response;
 			}
-			if(algorithm.equalsIgnoreCase("Simple")){
-				response.setPrimeNumbers(primeGenerator.generatePrimes(lowerRange, upperRange, userName, algorithm));
-				response.setMessage("Prime numbers generated successfully");
+			if(!(algorithm.equalsIgnoreCase("Simple") || algorithm.equalsIgnoreCase("Complex") )){
+				response.setMessage("Implementation for Algorithm ("+algorithm+") not available");
 			}
 			else {
-				response.setMessage("Implementation for Algorithm ("+algorithm+") not available");
+				response.setPrimeNumbers(primeGenerator.generatePrimes(lowerRange, upperRange, userName, algorithm));
+				response.setMessage("Prime numbers generated successfully");
 			}
 				
 			return response;

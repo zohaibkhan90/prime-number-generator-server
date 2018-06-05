@@ -45,23 +45,29 @@ public class PrimeGeneratorBLImpl implements PrimeGeneratorBL {
 			upperRange = Math.abs(upperRange);
 			//note the current time in milliseconds, before the execution of algorithm
 			long timeBefore = System.currentTimeMillis();
-			primeNumbers = primeNumberGenerator.generatePrimeNumbersSimple(lowerRange, upperRange);
+			if(algorithm.equalsIgnoreCase("Simple")){
+				logger.info("Running Simple Algorithm");
+				primeNumbers = primeNumberGenerator.generatePrimeNumbersSimple(lowerRange, upperRange);
+			} else if (algorithm.equalsIgnoreCase("Complex")){
+				logger.info("Running Complex Algorithm");
+				primeNumbers = primeNumberGenerator.generatePrimeNumbersComplex(lowerRange, upperRange);
+			}
+			String executionTime = "";
 			//note the current time in milliseconds, after the execution of algorithm
 			long timeAfter = System.currentTimeMillis();
-			//calculate number of seconds by dividing the difference by 1000
-			long executionTime = (timeAfter - timeBefore)/1000;
+			long difference = timeAfter - timeBefore;
+			
+			//choose time, whether it should be stored in seconds or milliseconds.
+			if(difference < 1000)
+				executionTime = difference+" milliseconds";
+			else
+				//calculate number of seconds by dividing the difference by 1000
+				executionTime = (timeAfter - timeBefore)/1000 + " seconds";
 			
 			//set namedParameterJdbcTemplate(the dataSource provider) for executionDao
 	    	executionDao.setNamedParameterJdbcTemplate(applicationConfig.getNamedParameterJdbcTemplate());
 	    	//Create a new instance of Execution Pojo Class, will be used to insert the new record for execution
-	    	Execution execution = new Execution();
-	    	execution.setUserName(userName);
-	    	execution.setTimestamp(Timestamp.from(Instant.now()));
-	    	execution.setUpperRange(upperRange);
-	    	execution.setLowerRange(lowerRange);
-	    	execution.setTimeElapsed(executionTime+" seconds");
-	    	execution.setAlgorithm(algorithm);
-	    	execution.setPrimes(primeNumbers.size());
+	    	Execution execution = new Execution(userName, Timestamp.from(Instant.now()), lowerRange, upperRange, executionTime, algorithm, primeNumbers.size());
 	    	logger.info("Calling execution dao to save execution record: "+new Gson().toJson(execution));
 	    	// save the execution in database
 	    	boolean result = executionDao.save(execution);
