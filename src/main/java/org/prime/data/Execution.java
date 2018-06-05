@@ -2,6 +2,10 @@ package org.prime.data;
 
 import java.sql.Timestamp;
 
+/**
+ * @author zohaib
+ *
+ */
 public class Execution {
 
 private String userName;
