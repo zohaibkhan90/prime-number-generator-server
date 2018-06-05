@@ -1,6 +1,10 @@
 package org.prime.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.prime.data.Execution;
 import org.prime.data.GeneratePrimesResponse;
 import org.prime.generator.PrimeGeneratorBLImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +60,20 @@ public class Services {
 			return response;
 		}
 
+	}
+	
+	/**
+	 * @return all the previous executions
+	 */
+	@RequestMapping(value = "getExecutions", method = RequestMethod.GET)
+	List<Execution> getExecutions(){
+		try {
+			return primeGenerator.getAllExecutions();
+		} catch(Exception ex) {
+			logger.info("Problem occured in getExecutions API!", ex);
+			return new ArrayList<Execution>();
+		}
+		
 	}
 	
 	public static void main(String[] args) throws Exception {
