@@ -40,10 +40,10 @@ public class Services {
 				return response;
 			}
 			if(null == algorithm || algorithm.length()<1){
-				response.setMessage("Please choose an algorithm from one of the followings: Simple");
+				response.setMessage("Please choose an algorithm from one of the followings: Simple, Complex, Parallel");
 				return response;
 			}
-			if(!(algorithm.equalsIgnoreCase("Simple") || algorithm.equalsIgnoreCase("Complex") )){
+			if(!(algorithm.equalsIgnoreCase("Simple") || algorithm.equalsIgnoreCase("Complex") || algorithm.equalsIgnoreCase("Parallel"))){
 				response.setMessage("Implementation for Algorithm ("+algorithm+") not available");
 			}
 			else {

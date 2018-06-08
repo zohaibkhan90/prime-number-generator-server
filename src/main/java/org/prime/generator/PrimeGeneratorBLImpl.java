@@ -51,6 +51,9 @@ public class PrimeGeneratorBLImpl implements PrimeGeneratorBL {
 			} else if (algorithm.equalsIgnoreCase("Complex")){
 				logger.info("Running Complex Algorithm");
 				primeNumbers = primeNumberGenerator.generatePrimeNumbersComplex(lowerRange, upperRange);
+			} else if (algorithm.equalsIgnoreCase("Parallel")){
+				logger.info("Running Parallel Algorithm");
+				primeNumbers = primeNumberGenerator.generatePrimeNumbersParallel(lowerRange, upperRange, "complex");
 			}
 			String executionTime = "";
 			//note the current time in milliseconds, after the execution of algorithm
