@@ -30,7 +30,7 @@ public class Services {
 	 * @return List of Integers, containing prime numbers in between the range provided in parameters
 	 */
 	@RequestMapping(value = "generatePrimes", method = RequestMethod.GET)
-	GeneratePrimesResponse generatePrimeNumbers(@RequestParam(value="lowerRange")Integer lowerRange, @RequestParam(value="upperRange")Integer upperRange, @RequestParam(value="userName", defaultValue = "Alien")String userName, @RequestParam(value="algorithm", defaultValue = "Simple")String algorithm){
+	GeneratePrimesResponse generatePrimeNumbers(@RequestParam(value="lowerRange", defaultValue = "0")Integer lowerRange, @RequestParam(value="upperRange", defaultValue = "200")Integer upperRange, @RequestParam(value="userName", defaultValue = "Alien")String userName, @RequestParam(value="algorithm", defaultValue = "Simple")String algorithm){
 		GeneratePrimesResponse response = new GeneratePrimesResponse();
 		try{
 			response.setAlgorithm(algorithm);
