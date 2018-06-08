@@ -89,7 +89,6 @@ public class PrimeGeneratorBLImpl implements PrimeGeneratorBL {
 	 */
 	@Override
 	public List<Execution> getAllExecutions() {
-		// TODO Auto-generated method stub
 		return executionDao.findAll();
 	}
 
@@ -98,8 +97,7 @@ public class PrimeGeneratorBLImpl implements PrimeGeneratorBL {
 	 */
 	@Override
 	public List<Execution> getExecutionsByUser(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		return executionDao.findExecutionsByName(userName);
 	}
 
 }

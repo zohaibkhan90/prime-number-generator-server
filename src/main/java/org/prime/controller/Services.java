@@ -76,6 +76,20 @@ public class Services {
 		
 	}
 	
+	/**
+	 * @return all the previous executions
+	 */
+	@RequestMapping(value = "getExecutionsByUser", method = RequestMethod.GET)
+	List<Execution> getExecutionsByUser(@RequestParam(value="userName", defaultValue = "Alien")String userName){
+		try {
+			return primeGenerator.getExecutionsByUser(userName);
+		} catch(Exception ex) {
+			logger.info("Problem occured in getExecutions API!", ex);
+			return new ArrayList<Execution>();
+		}
+		
+	}
+	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Services.class, args);
 	}
