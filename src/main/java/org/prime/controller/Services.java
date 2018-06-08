@@ -77,7 +77,7 @@ public class Services {
 	}
 	
 	/**
-	 * @return all the previous executions
+	 * @return all the previous executions by userName
 	 */
 	@RequestMapping(value = "getExecutionsByUser", method = RequestMethod.GET)
 	List<Execution> getExecutionsByUser(@RequestParam(value="userName", defaultValue = "Alien")String userName){
