@@ -3,7 +3,7 @@
 
 ### Prime Number Generation ###
 
-* Provides API for different algorithms for prime number generation, between the lower and upper range provided by user from command line
+* Provides API for different algorithms for prime number generation, between the lower and upper range provided by user from HTTP Requests
 * 1.0
 
 ### How do I get set up? ###
