@@ -45,9 +45,11 @@
 
 			Once Jar file is created, go to the ./target/ directory where Jar file was created and run following command:
 				java -jar PrimeNumberGenerator.jar
-		    Once it is deployed successfully (will take about 2,3 seconds), you can consume services on localhost:8080. For detail of Services usage, please follow this [Document](https://docs.google.com/document/d/10pnOuvkHB0UhLehOBRbV1PZygk2hhE7VcNI54WG4pSE)
+		        Once it is deployed successfully (will take about 2,3 seconds), you can consume services on localhost:8080.
 
+* Application Guide
 
+    For detail of Services usage, please follow this [Document](https://docs.google.com/document/d/10pnOuvkHB0UhLehOBRbV1PZygk2hhE7VcNI54WG4pSE)
 ### Who do I talk to? ###
 
 * Repo owner or admin
